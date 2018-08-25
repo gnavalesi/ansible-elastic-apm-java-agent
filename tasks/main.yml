@@ -1,0 +1,16 @@
+---
+
+- name: Create destination directory
+  file:
+    path: "{{ elastic_apm_java_agent_dir }}"
+    state: directory
+
+- name: Download jar
+  get_url:
+    url: "{{ elastic_apm_java_agent_download_url }}"
+    dest: "{{elastic_apm_java_agent_dir}}/{{ elastic_apm_java_agent_filename }}"
+
+- name: Create elasticapm.properties file
+  template:
+    src: elasticapm.properties.j2
+    dest: "{{elastic_apm_java_agent_dir}}/elasticapm.properties"
