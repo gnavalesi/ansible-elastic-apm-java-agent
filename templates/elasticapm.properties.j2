@@ -7,7 +7,7 @@
 # A boolean specifying if the agent should be active or not. If active, the agent will instrument incoming HTTP requests
 # and track errors.
 {% if elastic_apm_java_agent_final_conf.active is defined %}
-active={{ elastic_apm_java_agent_final_conf.active }}
+active={{ elastic_apm_java_agent_final_conf.active | lower }}
 {% else %}
 #active=
 {% endif %}
@@ -16,7 +16,7 @@ active={{ elastic_apm_java_agent_final_conf.active }}
 # set to false, Elastic APM will not affect your application at all.
 # Both active and instrument needs to be true for instrumentation to be running.
 {% if elastic_apm_java_agent_final_conf.instrument is defined %}
-instrument={{ elastic_apm_java_agent_final_conf.instrument }}
+instrument={{ elastic_apm_java_agent_final_conf.instrument | lower }}
 {% else %}
 #instrument=
 {% endif %}
@@ -30,7 +30,7 @@ service_name={{ elastic_apm_java_agent_final_conf.service_name }}
 #service_name=
 {% endif %}
 
-# A version string for the currently deployed version of the service. If you don’t version your deployments, the recommended value for this
+# A version string for the currently deployed version of the service. If you don't version your deployments, the recommended value for this
 # field is the commit identifier of the deployed revision, e.g. the output of git rev-parse HEAD.
 {% if elastic_apm_java_agent_final_conf.service_version is defined %}
 service_version={{ elastic_apm_java_agent_final_conf.service_version }}
@@ -133,7 +133,7 @@ logging.log_level=
 # Sets the path of the agent logs. The special value _AGENT_HOME_ is a placeholder for the folder the elastic-apm-agent.jar is in.
 # Example: _AGENT_HOME_/logs/elastic-apm.log
 # When set to the special value System.out, the logs are sent to standard out.
-# When logging to a file, it’s content is deleted when the application starts.
+# When logging to a file, it's content is deleted when the application starts.
 {% if elastic_apm_java_agent_final_conf.logging.log_file is defined %}
 logging.log_file={{ elastic_apm_java_agent_final_conf.logging.log_file }}
 {% else %}
@@ -170,7 +170,7 @@ server_timeout=
 # By default, the agent verifies the SSL certificate if you use an HTTPS connection to the APM server.
 # Verification can be disabled by changing this setting to false.
 {% if elastic_apm_java_agent_final_conf.verify_server_cert is defined %}
-verify_server_cert={{ elastic_apm_java_agent_final_conf.verify_server_cert }}
+verify_server_cert={{ elastic_apm_java_agent_final_conf.verify_server_cert | lower }}
 {% else %}
 verify_server_cert=
 {% endif %}
@@ -196,7 +196,7 @@ max_queue_size=
 
 # Whether each transaction should have the process arguments attached. Disabled by default to save disk space.
 {% if elastic_apm_java_agent_final_conf.include_process_args is defined %}
-include_process_args={{ elastic_apm_java_agent_final_conf.include_process_args }}
+include_process_args={{ elastic_apm_java_agent_final_conf.include_process_args | lower }}
 {% else %}
 include_process_args=
 {% endif %}
