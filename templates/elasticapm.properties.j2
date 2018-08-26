@@ -96,7 +96,7 @@ disabled_instrumentations={{ elastic_apm_java_agent_final_conf.disabled_instrume
 {% if elastic_apm_java_agent_final_conf.capture_body is defined %}
 capture_body={{ elastic_apm_java_agent_final_conf.capture_body }}
 {% else %}
-capture_body=
+#capture_body=
 {% endif %}
 
 # Used to restrict requests to certain URLs from being instrumented.
@@ -118,7 +118,7 @@ ignore_urls=
 {% if elastic_apm_java_agent_final_conf.ignore_user_agents is defined %}
 ignore_user_agents={{ elastic_apm_java_agent_final_conf.ignore_user_agents }}
 {% else %}
-ignore_user_agents=
+#ignore_user_agents=
 {% endif %}
 
 ## Logging configurations
@@ -127,7 +127,7 @@ ignore_user_agents=
 {% if elastic_apm_java_agent_final_conf.logging_log_level is defined %}
 logging.log_level={{ elastic_apm_java_agent_final_conf.logging.log_level }}
 {% else %}
-logging.log_level=
+#logging.log_level=
 {% endif %}
 
 # Sets the path of the agent logs. The special value _AGENT_HOME_ is a placeholder for the folder the elastic-apm-agent.jar is in.
@@ -137,7 +137,7 @@ logging.log_level=
 {% if elastic_apm_java_agent_final_conf.logging.log_file is defined %}
 logging.log_file={{ elastic_apm_java_agent_final_conf.logging.log_file }}
 {% else %}
-logging.log_file=
+#logging.log_file=
 {% endif %}
 
 ## Reporter configurations
@@ -147,14 +147,14 @@ logging.log_file=
 {% if elastic_apm_java_agent_final_conf.secret_token is defined %}
 secret_token={{ elastic_apm_java_agent_final_conf.secret_token }}
 {% else %}
-secret_token=
+#secret_token=
 {% endif %}
 
 # The URL must be fully qualified, including protocol (http or https) and port.
 {% if elastic_apm_java_agent_final_conf.server_url is defined %}
 server_url={{ elastic_apm_java_agent_final_conf.server_url }}
 {% else %}
-server_url=
+#server_url=
 {% endif %}
 
 # If a request to the APM server takes longer than the configured timeout, the request is cancelled and the event (exception or transaction)
@@ -164,7 +164,7 @@ server_url=
 {% if elastic_apm_java_agent_final_conf.server_timeout is defined %}
 server_timeout={{ elastic_apm_java_agent_final_conf.server_timeout }}
 {% else %}
-server_timeout=
+#server_timeout=
 {% endif %}
 
 # By default, the agent verifies the SSL certificate if you use an HTTPS connection to the APM server.
@@ -172,7 +172,7 @@ server_timeout=
 {% if elastic_apm_java_agent_final_conf.verify_server_cert is defined %}
 verify_server_cert={{ elastic_apm_java_agent_final_conf.verify_server_cert | lower }}
 {% else %}
-verify_server_cert=
+#verify_server_cert=
 {% endif %}
 
 # Interval with which transactions should be sent to the APM server, in seconds.
@@ -181,7 +181,7 @@ verify_server_cert=
 {% if elastic_apm_java_agent_final_conf.flush_interval is defined %}
 flush_interval={{ elastic_apm_java_agent_final_conf.flush_interval }}
 {% else %}
-flush_interval=
+#flush_interval=
 {% endif %}
 
 # Maximum queue length of transactions before sending transactions to the APM server.
@@ -191,14 +191,14 @@ flush_interval=
 {% if elastic_apm_java_agent_final_conf.max_queue_size is defined %}
 max_queue_size={{ elastic_apm_java_agent_final_conf.max_queue_size }}
 {% else %}
-max_queue_size=
+#max_queue_size=
 {% endif %}
 
 # Whether each transaction should have the process arguments attached. Disabled by default to save disk space.
 {% if elastic_apm_java_agent_final_conf.include_process_args is defined %}
 include_process_args={{ elastic_apm_java_agent_final_conf.include_process_args | lower }}
 {% else %}
-include_process_args=
+#include_process_args=
 {% endif %}
 
 ## Stacktrace configurations
@@ -207,7 +207,7 @@ include_process_args=
 {% if elastic_apm_java_agent_final_conf.application_packages is defined %}
 application_packages={{ elastic_apm_java_agent_final_conf.application_packages }}
 {% else %}
-application_packages=
+#application_packages=
 {% endif %}
 
 # Setting it to 0 will disable stack trace collection. Any positive integer value will be used as the maximum number of frames to collect.
@@ -215,7 +215,7 @@ application_packages=
 {% if elastic_apm_java_agent_final_conf.stack_trace_limit is defined %}
 stack_trace_limit={{ elastic_apm_java_agent_final_conf.stack_trace_limit }}
 {% else %}
-stack_trace_limit=
+#stack_trace_limit=
 {% endif %}
 
 # In its default settings, the APM agent will collect a stack trace with every recorded span. While this is very helpful to find the exact
@@ -226,5 +226,5 @@ stack_trace_limit=
 {% if elastic_apm_java_agent_final_conf.span_frames_min_duration_ms is defined %}
 span_frames_min_duration_ms={{ elastic_apm_java_agent_final_conf.span_frames_min_duration_ms }}
 {% else %}
-span_frames_min_duration_ms=
+#span_frames_min_duration_ms=
 {% endif %}
