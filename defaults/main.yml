@@ -1,4 +1,4 @@
-elastic_apm_java_agent_version: 0.6.2
+elastic_apm_java_agent_version: 0.7.0
 elastic_apm_java_agent_download_location: "https://repo1.maven.org/maven2"
 elastic_apm_java_agent_download_url: "{{ elastic_apm_java_agent_download_location }}/co/elastic/apm/elastic-apm-agent/{{ elastic_apm_java_agent_version }}/elastic-apm-agent-{{ elastic_apm_java_agent_version }}.jar"
 elastic_apm_java_agent_dir: "/opt/elastic-apm-agent"
@@ -9,34 +9,36 @@ elastic_apm_java_agent_conf: {}
 
 # Default configuration
 elastic_apm_java_agent_default_conf:
+
   # Core
   active: true
   instrument: true
-  sample_rate: 1.0
+  transaction_sample_rate: 1.0
   transaction_max_spans: 500
-  sanitize_field_names: "(?i)password, (?i)passwd, (?i)pwd, (?i)secret, (?i)token, (?i)*key, (?i)*token, (?i)*session*, (?i)*credit*, (?i)*card*, (?i)authorization, (?i)set-cookie"
+  sanitize_field_names: "(?i)password,(?i)passwd,(?i)pwd,(?i)secret,(?i)token,(?i)*key,(?i)*token,(?i)*session*,(?i)*credit*,(?i)*card*,(?i)authorization,(?i)set-cookie"
+  disable_instrumentations: incubating
 
   # HTTP
-  capture_body: "OFF"
-  ignore_urls: "/VAADIN/*, (?i)/heartbeat/*, /favicon.ico, *.js, *.css, *.jpg, *.jpeg, *.png, *.webp, *.svg, *.woff, *.woff2"
+  capture_body: OFF
+  ignore_urls: "/VAADIN/*,(?i)/heartbeat/*,/favicon.ico,*.js,*.css,*.jpg,*.jpeg,*.png,*.webp,*.svg,*.woff,*.woff2"
+  use_path_as_transaction_name: false
 
   # Logging
-  logging:
-    log_level: "INFO"
-    log_file: "System.out"
+  log_level: INFO
+  log_file: System.out
+  enable_log_correlation: false
 
   # Reporter
-  server_url: "http://localhost:8200"
-  server_timeout: 5
+  server_urls: "http://localhost:8200"
+  server_timeout: 5s
   verify_server_cert: true
-  flush_interval: 1
+  flush_interval: 1s
   max_queue_size: 500
   include_process_args: false
 
-
   # Stacktrace
   stack_trace_limit: 50
-  span_frames_min_duration_ms: 5
+  span_frames_min_duration: 5ms
 
 # Final configuration
 elastic_apm_java_agent_final_conf: "{{ elastic_apm_java_agent_default_conf | combine(elastic_apm_java_agent_conf, recursive=True) }}"
